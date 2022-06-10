@@ -1,22 +1,17 @@
 package pl.lublin.wsei.java.cwiczenia.lab6.console;
 
 import java.io.*;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.time.Instant;
 
-public class CopyFromUrl {
+public class TestTextCopyEncoding {
     public static void main(String[] args) throws IOException {
-        BufferedInputStream in = null;
-        BufferedOutputStream out = null;
-        long startTime = System.nanoTime();
-        URL url = new URL("https://filesamples.com/samples/image/tiff/sample_1920%c3%971280.tiff");
+        BufferedReader in = null;
+        BufferedWriter out = null;
+        long startTime = Instant.now().toEpochMilli();
 
         try{
-            in = new BufferedInputStream(url.openStream());
-            out = new BufferedOutputStream(new FileOutputStream("img_copyurl.tiff"));
+            in = new BufferedReader(new FileReader("dzieweczki.txt"));
+            out = new BufferedWriter(new FileWriter("dzieweczki_java.txt"));
             int c;
             while ((c = in.read()) !=-1){
                 out.write(c);
